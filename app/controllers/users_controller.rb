@@ -2,15 +2,18 @@ class UsersController < ApplicationController
 
 
   def new
+    @user = User.new
   end
 
   def create
-    user = User.new(user_params)
-    if user.save
-      session[:user_id] = user.id
-      redirect_to '/'
+    puts user_params
+    if !User.exists?(email: user_params[:email])
+    @temp_user = User.new(user_params)
+    @temp_user.save
+    session[:user_id] = @temp_user.id
+    redirect_to '/'
     else
-      redirect_to '/signup'
+      redirect_to '/'
     end
   end
 
