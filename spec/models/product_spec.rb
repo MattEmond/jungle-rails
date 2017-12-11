@@ -19,7 +19,7 @@ RSpec.describe Product, type: :model do
 
     it 'should be invalid without a quantity' do
       @category = Category.new(id: 1, name: 'Electronics')
-      @product = Product.new(name: 'iPod', quantity: nil, price: 99.99, category: @category)
+      @product = Product.new(name: 'iPhone', quantity: nil, price: 99.99, category: @category)
       expect(@product).to_not be_valid
       expect(@product.errors.full_messages).to include("Quantity can't be blank")
     end
